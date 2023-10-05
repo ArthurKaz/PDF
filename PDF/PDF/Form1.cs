@@ -136,5 +136,10 @@ namespace PDF
             BatteryStorage batteryStorage = (BatteryStorage)BatteryStorageComboBox.SelectedIndex;
             batteryPrice.Text = GetBatteryStoragePrice(batteryStorage);
         }
+
+        private void Name_TextChanged(object sender, System.EventArgs e)
+        {
+            MessageBox.Show("changed");
+        }
     }
 }
