@@ -3,18 +3,6 @@
 
 @using HtmlAgilityPack
 <h3>IronPdfComponent</h3>
-@* <EditForm Model="@_InputMsgModel" id="inputText">
-    <div>
-        <InputTextArea @bind-Value="@_InputMsgModel.HTML" rows="20" />
-    </div>
-    <div>
-        <button onclick="@SubmitHTML">Render HTML</button>
-    </div>
-
-</EditForm> *@
-@code {
-    string htmlCode = "<p>Це HTML-код, який ви хочете відобразити.</p>";
-}
 
 <button onclick="@SubmitHTML">Render HTML</button>
 
@@ -26,27 +14,33 @@
 
 @code {
     InputHTMLModel _InputMsgModel = new InputHTMLModel();
-    private readonly HttpClient httpClient = new HttpClient();
+    // private readonly HttpClient httpClient = new HttpClient();
     private string htmlContent = string.Empty;
- 
-    public string updatedHtml = "<p>Привіт, <span id='name'>John</span>!</p>";
 
-  
+    public string updatedHtml;
+
+
     private async Task SubmitHTML()
     {
-         
-        //  _InputMsgModel.HTML = "Файл не знайдено.";
-        //string filePath = "html/template.txt";
         string filePath = "wwwroot/html/htmlpage.html";
         htmlContent = await ReadHtmlFileAsync(filePath);
-     
+
+        updatedHtml = ReplaceYourNameWithJohn(htmlContent);
+
 
         var render = new IronPdf.ChromePdfRenderer();
-        var doc = render.RenderHtmlAsPdf(htmlContent);
+        var doc = render.RenderHtmlAsPdf(updatedHtml);
         var fileName = "iron.pdf";
         using var streamRef = new DotNetStreamReference(stream: doc.Stream);
         await JS.InvokeVoidAsync("SubmitHTML", fileName, streamRef);
 
+    }
+    public static string ReplaceYourNameWithJohn(string input)
+    {
+        // Використовуємо метод Replace для заміни "YourName" на "John" у рядку
+        string result = input.Replace("Name", "John");
+
+        return result;
     }
 
     public async Task<string> ReadHtmlFileAsync(string filePath)
@@ -54,7 +48,7 @@
         try
         {
             _InputMsgModel.HTML = "зчитування файла";
-           // Шлях до вашого файлу htmlpage.html в додатку Blazor
+         
 
             using (StreamReader reader = new StreamReader(filePath))
             {
@@ -65,8 +59,6 @@
         }
         catch (Exception ex)
         {
-            // Обробка помилок, якщо файл не може бути зчитаний
-            // Наприклад, ви можете логувати помилку або відобразити її користувачу
             _InputMsgModel.HTML = "Помилка зчитування файлу: " + ex.Message;
             return "";
         }
