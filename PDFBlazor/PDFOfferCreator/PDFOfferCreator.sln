@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFOfferCreator.Api", "PDFOfferCreator.Api\PDFOfferCreator.Api.csproj", "{636A3EDE-0D2D-4F4D-9F49-AFB980766670}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{CFAFC1C8-C885-4A54-B6CB-A24358AE3D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFAFC1C8-C885-4A54-B6CB-A24358AE3D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFAFC1C8-C885-4A54-B6CB-A24358AE3D17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636A3EDE-0D2D-4F4D-9F49-AFB980766670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636A3EDE-0D2D-4F4D-9F49-AFB980766670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636A3EDE-0D2D-4F4D-9F49-AFB980766670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636A3EDE-0D2D-4F4D-9F49-AFB980766670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
