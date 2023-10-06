@@ -87,7 +87,6 @@
             this.Name.Name = "Name";
             this.Name.Size = new System.Drawing.Size(173, 22);
             this.Name.TabIndex = 3;
-            this.Name.TextChanged += new System.EventHandler(this.Name_TextChanged);
             // 
             // Surname
             // 

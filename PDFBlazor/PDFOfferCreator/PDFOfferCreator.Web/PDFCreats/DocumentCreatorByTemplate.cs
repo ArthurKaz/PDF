@@ -68,7 +68,7 @@ namespace PDFCreator
             drawingPages.AddFillerElement(_batteryStoragePrice);
 
             drawingPages.Fill(template, newPath);
-
+            
         }
     }
 }

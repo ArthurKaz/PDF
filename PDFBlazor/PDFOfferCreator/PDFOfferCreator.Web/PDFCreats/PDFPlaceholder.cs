@@ -1,15 +1,7 @@
-﻿using PdfSharp.Pdf;
-using PdfSharp.Pdf.Advanced;
-using PdfSharp.Pdf.Content;
-using PdfSharp.Pdf.Content.Objects;
-using PdfSharp.Pdf.Content;
+﻿using PdfSharp.Drawing;
 using PdfSharp.Pdf.IO;
 using PdfSharp.Pdf;
-using PdfSharp.Drawing;
-using System.Collections.Generic;
-using System.IO;
-using System.Collections.Generic;
-using System.Drawing;
+using PdfSharp.Fonts;
 using System.IO;
 
 namespace PDFCreator
@@ -36,8 +28,8 @@ namespace PDFCreator
                     }
                 }
             }
+            
             document.Save(result);
         }
-       
     }
 }

@@ -1,0 +1,80 @@
+﻿@page "/IronPdf"
+@inject IJSRuntime JS
+
+@using HtmlAgilityPack
+<h3>IronPdfComponent</h3>
+@* <EditForm Model="@_InputMsgModel" id="inputText">
+    <div>
+        <InputTextArea @bind-Value="@_InputMsgModel.HTML" rows="20" />
+    </div>
+    <div>
+        <button onclick="@SubmitHTML">Render HTML</button>
+    </div>
+
+</EditForm> *@
+@code {
+    string htmlCode = "<p>Це HTML-код, який ви хочете відобразити.</p>";
+}
+
+<button onclick="@SubmitHTML">Render HTML</button>
+
+<h2>@_InputMsgModel.HTML</h2>
+@* <iframe src="/html/htmlpage.html" width="100%" height="500"></iframe> *@
+
+<div @innerHTML="htmlCode"></div>
+
+
+@code {
+    InputHTMLModel _InputMsgModel = new InputHTMLModel();
+    private readonly HttpClient httpClient = new HttpClient();
+    private string htmlContent = string.Empty;
+ 
+    public string updatedHtml = "<p>Привіт, <span id='name'>John</span>!</p>";
+
+  
+    private async Task SubmitHTML()
+    {
+         
+        //  _InputMsgModel.HTML = "Файл не знайдено.";
+        //string filePath = "html/template.txt";
+        string filePath = "wwwroot/html/htmlpage.html";
+        htmlContent = await ReadHtmlFileAsync(filePath);
+     
+
+        var render = new IronPdf.ChromePdfRenderer();
+        var doc = render.RenderHtmlAsPdf(htmlContent);
+        var fileName = "iron.pdf";
+        using var streamRef = new DotNetStreamReference(stream: doc.Stream);
+        await JS.InvokeVoidAsync("SubmitHTML", fileName, streamRef);
+
+    }
+
+    public async Task<string> ReadHtmlFileAsync(string filePath)
+    {
+        try
+        {
+            _InputMsgModel.HTML = "зчитування файла";
+           // Шлях до вашого файлу htmlpage.html в додатку Blazor
+
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string fileContent = await reader.ReadToEndAsync();
+                _InputMsgModel.HTML =  fileContent;
+                return fileContent;
+            }
+        }
+        catch (Exception ex)
+        {
+            // Обробка помилок, якщо файл не може бути зчитаний
+            // Наприклад, ви можете логувати помилку або відобразити її користувачу
+            _InputMsgModel.HTML = "Помилка зчитування файлу: " + ex.Message;
+            return "";
+        }
+    }
+
+    public class InputHTMLModel
+    {
+        public string HTML { get; set; } = "sadf";
+    }
+
+}

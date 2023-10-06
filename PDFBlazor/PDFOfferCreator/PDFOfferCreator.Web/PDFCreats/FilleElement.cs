@@ -1,13 +1,19 @@
-﻿namespace PDFCreator
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PDFCreator
 {
-    public class FillerElement
+    public class FilleElement
     {
         public string Text { get; set; } = "Not entered";
         public float x { get; set; }
         public float y { get; set; }
         public int PageNumer { get; set; } = 1;
 
-        public FillerElement(float x, float y, int pageNumer)
+        public FilleElement(float x, float y, int pageNumer)
         {
             this.x = x;
             this.y = y;

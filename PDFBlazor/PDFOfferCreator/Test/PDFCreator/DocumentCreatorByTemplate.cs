@@ -53,7 +53,7 @@ namespace PDFCreator
                 }
             }*/
 
-            drawingPages.Fill(FileTemplatePath, newFilePath);
+           // drawingPages.Fill(FileTemplatePath, newFilePath);
         }
         public void GetPDFDataCreateDocument(string template, string newPath)
         {
@@ -67,7 +67,7 @@ namespace PDFCreator
             drawingPages.AddFillerElement(_moduleTypePrice);
             drawingPages.AddFillerElement(_batteryStoragePrice);
 
-            drawingPages.Fill(template, newPath);
+            drawingPages.FillAndSaveUsingSyncfusion(template, newPath);
 
         }
     }

@@ -1,7 +1,6 @@
 ﻿
 using System.Windows.Forms;
 using BusinessLogic;
-using iText.Signatures;
 using PDFCreator;
 namespace PDF
 {
@@ -22,19 +21,37 @@ namespace PDF
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            if(Validate(out string message) == false)
+            /*if(Validate(out string message) == false)
             {
                 MessageBox.Show(message);
             }
             else
-            {
+            {*/
                 CreatePDFFile();
-            }
+            //}
         }
 
         private void CreatePDFFile()
         {
-            DocumentCreatorByTemplate documentTemplate = new DocumentCreatorByTemplate();
+
+            DocumentCreatorByTemplate template = new DocumentCreatorByTemplate();
+
+
+            template.Name = "none";
+            template.Surname = "none";
+            template.Street = "none";
+            template.City = "none";
+
+            ModuleType moduleType = (ModuleType)1;
+            BatteryStorage batteryStorage = (BatteryStorage)1;
+            template.ModuleType = GetModuleName(moduleType);
+            template.BatteryStorage = GetBatteryStorageName(batteryStorage);
+            template.ModuleTypePrice = GetModulePrice(moduleType);
+            template.BatteryStoragePrice = GetBatteryStoragePrice(batteryStorage);
+
+            template.GetPDFDataCreateDocument("D:\\Проєкти\\PDF\\PDF\\PDF\\bin\\Debug\\JUNO SOLAR.pdf", "C:\\Users\\kazuk\\OneDrive\\Робочий стіл\\result.pdf");
+
+            /*DocumentCreatorByTemplate documentTemplate = new DocumentCreatorByTemplate();
 
             documentTemplate.Name = Name.Text;
             documentTemplate.Surname = Surname.Text;
@@ -48,7 +65,7 @@ namespace PDF
             documentTemplate.ModuleTypePrice = GetModulePrice(moduleType);
             documentTemplate.BatteryStoragePrice = GetBatteryStoragePrice(batteryStorage);
 
-            documentTemplate.CreateDocument(newFile);
+            documentTemplate.CreateDocument(newFile);*/
         }
 
         private bool Validate(out string message)
