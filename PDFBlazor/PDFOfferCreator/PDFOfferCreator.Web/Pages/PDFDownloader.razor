@@ -1,0 +1,11 @@
+﻿@inherits PDFDownloaderBase
+
+@if(ReadyToDownload){
+<button class="btn btn-success" @onclick = "Download">
+    @OfferData.Name 
+    </button>
+}
+else
+{
+    <div class="spinner"></div>
+}

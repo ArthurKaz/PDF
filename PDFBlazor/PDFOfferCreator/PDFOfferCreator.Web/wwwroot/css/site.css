@@ -62,3 +62,79 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+
+.spinner {
+    border: 16px solid silver;
+    border-top: 16px solid #337AB7;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 700ms linear infinite;
+    top: 40%;
+    left: 55%;
+    position: absolute;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes catWait {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    75% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.cat {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+    border-radius: 50%;
+    position: relative;
+    animation: catWait 2s infinite; /* Анімація буде повторюватися безкінечно */
+}
+
+    .cat::before,
+    .cat::after {
+        content: '';
+        position: absolute;
+        background-color: black;
+    }
+
+    .cat::before {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        left: 30px;
+        top: 30px;
+    }
+
+    .cat::after {
+        width: 10px;
+        height: 40px;
+        left: 45px;
+        top: 60px;
+    }
