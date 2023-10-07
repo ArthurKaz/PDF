@@ -32,6 +32,16 @@ namespace PDFOfferCreator.Model
 			ModuleType = moduleType;
 			BatteryStorage = batteryStorage;
 		}
+        public OfferData()
+        {
+            Id = 0;
+            Name = "Name";
+            Surname = "Surname";
+            City = "city";
+            Street = "street";
+            ModuleType = 0;
+            BatteryStorage = 0;
+        }
 
-	}
+    }
 }

@@ -1,12 +1,19 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using PDFOfferCreator.Web.Data;
+using PDFOfferCreator.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// CreateOfferData services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+builder.Services.AddHttpClient<IOfferDataService, OfferDataService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7296/");
+});
+
 builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();

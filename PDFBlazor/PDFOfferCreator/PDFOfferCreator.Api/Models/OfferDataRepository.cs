@@ -24,9 +24,9 @@ namespace PDFOfferCreator.Api.Models
 
         public async Task<OfferData> AddOfferDataAsync(OfferData offerData)
         {
-            appDbContext.OfferData.Add(offerData);
+            var result = await appDbContext.OfferData.AddAsync(offerData);
             await appDbContext.SaveChangesAsync();
-            return offerData;
+            return result.Entity;
         }
 
         public async Task<OfferData> UpdateOfferDataAsync(OfferData offerData)

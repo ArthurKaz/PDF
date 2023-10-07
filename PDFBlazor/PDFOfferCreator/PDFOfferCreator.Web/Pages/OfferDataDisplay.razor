@@ -1,0 +1,18 @@
+﻿@inherits OfferDataDisplayBase
+
+<div class="offerDataInfo" style="min-width: 18rem; max-width: 30.5%;">
+    <div class="card-header">
+        <h3>@OfferData.Name @OfferData.Surname</h3>
+    </div>
+    
+    <div class="photoContainer">
+        <img class="photo" src="https://cdn4.iconfinder.com/data/icons/file-extensions-1/64/pdfs-512.png" />
+    </div>
+
+        <div class="card-footer">
+            <a href="@($"/offerdetails/{OfferData.Id}")" class="btn btn-primary m-1">View</a>
+
+            <a href="@($"/editofferdata/{OfferData.Id}")" class="btn btn-primary m-1">Edit</a>
+            <a href="#" class="btn btn-danger m-1">Delete</a>
+        </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@page "/alloffers"
+@inherits DisplayAllOfferDataBase
+
+<div class="info-container">
+    @if (OfferDatas == null)
+    {
+        <div class="spinner"></div>
+    }
+    else
+    {
+        foreach (var offerData in OfferDatas)
+        {
+            <OfferDataDisplay OfferData="offerData"></OfferDataDisplay>
+        }
+    }
+</div>

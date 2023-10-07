@@ -1,0 +1,70 @@
+﻿@page "/addofferdata"
+@inherits AddOfferBase
+
+<EditForm Model="@OfferData" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <h3>Add new offer data</h3>
+    <hr />
+    <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">
+            Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="name" class="form-control" placeholder="Name"
+            @bind-Value="OfferData.Name"></InputText>
+            <ValidationMessage For="@(() => OfferData.Name)" />
+        </div>
+
+        <label for="surname" class="col-sm-2 col-form-label">
+            Surname
+        </label>
+        <div class="col-sm-10">
+            <InputText id="surname" class="form-control" placeholder="Surname"
+            @bind-Value="OfferData.Surname"></InputText>
+            <ValidationMessage For="@(() => OfferData.Surname)" />
+        </div>
+
+        <label for="city" class="col-sm-2 col-form-label">
+            City
+        </label>
+        <div class="col-sm-10">
+            <InputText id="city" class="form-control" placeholder="City"
+            @bind-Value="OfferData.City"></InputText>
+            <ValidationMessage For="@(() => OfferData.City)" />
+        </div>
+
+        <label for="street" class="col-sm-2 col-form-label">
+            Street
+        </label>
+        <div class="col-sm-10">
+            <InputText id="street" class="form-control" placeholder="Street"
+            @bind-Value="OfferData.Street"></InputText>
+            <ValidationMessage For="@(() => OfferData.Street)" />
+        </div>
+
+        <label for="moduleType" class="col-sm-2 col-form-label">
+            Module Type
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="moduleType" @bind-Value="OfferData.ModuleType" class="form-control">
+                @foreach (var moduleType in Enum.GetValues(typeof(ModuleType)))
+                {
+                    <option value="@moduleType">@moduleType</option>
+                }
+            </InputSelect>
+        </div>
+
+        <label for="batteryStorage" class="col-sm-2 col-form-label">
+            Battery Storage
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="batteryStorage" @bind-Value="OfferData.BatteryStorage" class="form-control">
+                @foreach (var batteryStorage in Enum.GetValues(typeof(BatteryStorage)))
+                {
+                    <option value="@batteryStorage">@batteryStorage</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary m-1">Add</button>
+</EditForm>
