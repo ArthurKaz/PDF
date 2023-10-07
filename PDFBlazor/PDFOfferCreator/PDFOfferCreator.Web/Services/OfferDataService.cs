@@ -18,6 +18,11 @@ namespace PDFOfferCreator.Web.Services
             return offerData;
         }
 
+        public async Task DeleteOfferData(int id)
+        {
+            await _httpClient.DeleteAsync($"api/offerdata/{id}");
+        }
+
         public async Task<OfferData> GetOfferData(int id)
         {
             return await _httpClient.GetFromJsonAsync<OfferData>($"api/offerdata/{id}");

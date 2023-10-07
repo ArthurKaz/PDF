@@ -10,9 +10,10 @@
     </div>
 
         <div class="card-footer">
-            <a href="@($"/offerdetails/{OfferData.Id}")" class="btn btn-primary m-1">View</a>
+        <a href="@($"/pdfdenerate/{OfferData.Id}")" class="btn btn-primary m-1">Get pdf</a>
 
-            <a href="@($"/editofferdata/{OfferData.Id}")" class="btn btn-primary m-1">Edit</a>
-            <a href="#" class="btn btn-danger m-1">Delete</a>
+        <a href="@($"/pdfdenerate")" class="btn btn-primary m-1">Edit</a>
+            <a  class="btn btn-danger m-1" @onclick = "DeleteClick">Delete</a>
         </div>
 </div>
+<PragimTech.Components.Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDeleteClick"></PragimTech.Components.Confirm>

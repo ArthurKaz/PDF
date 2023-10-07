@@ -17,7 +17,7 @@ namespace PDFOfferCreator.Web.Pages
 
 		public bool ReadyToDownload { get; set; } = false;
 
-		private PDFFiller pDFFiller;
+		private HTMLFiller pDFFiller;
 
 		private void Test()
 		{
@@ -26,19 +26,18 @@ namespace PDFOfferCreator.Web.Pages
 
 		protected override async Task OnInitializedAsync()
 		{
-			pDFFiller = new PDFFiller(JS);
-			var replace = await pDFFiller.FillData(OfferData);
-			if (replace)
+			//pDFFiller = new HTMLFiller(JS);
+		//	var replace = await pDFFiller.FillData(OfferData);
+			/*if (replace)
 			{
 				ReadyToDownload = true;
 				pDFFiller.FileDownloaded += Test;
-			}
+			}*/
 		}
 		public async Task Download()
 		{
             ReadyToDownload = false;
 			await pDFFiller.Download();
-			
 		}
     }
 }

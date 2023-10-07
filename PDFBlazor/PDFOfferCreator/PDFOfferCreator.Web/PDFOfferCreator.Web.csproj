@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PDFOfferCreator.Model\PDFOfferCreator.Model.csproj" />
+    <ProjectReference Include="C:\Users\kazuk\Downloads\PragimTech.Components\PragimTech.Components.csproj" />
   </ItemGroup>
 
 </Project>

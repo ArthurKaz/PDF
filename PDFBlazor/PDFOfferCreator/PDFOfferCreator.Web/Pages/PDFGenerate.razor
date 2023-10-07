@@ -1,0 +1,15 @@
+﻿@page "/pdfdenerate/{id}"
+@inherits PDFGenerateBase
+@if(OfferData == null)
+{
+    <div class="spinner"></div>
+}
+else{
+<br/>
+    <br />
+<div class="pdf-container">@html</div>
+    <br />
+
+    
+    <a class="btn btn-success m-1" @onclick ="DownloadPDF">Download</a>
+}

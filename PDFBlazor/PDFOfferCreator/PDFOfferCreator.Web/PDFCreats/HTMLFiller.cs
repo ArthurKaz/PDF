@@ -4,10 +4,9 @@ using PDFOfferCreator.Model;
 
 namespace PDFOfferCreator.Web.PDFCreats
 {
-    public class PDFFiller
+    public class HTMLFiller
     {
-        private const string templateHtmlPath = "wwwroot/html/htmlpage.html";
-        private readonly IJSRuntime JS;
+        //private readonly IJSRuntime JS;
 
         private DataElement _name = new DataElement("Name");
         private DataElement _surname = new DataElement("Surname");
@@ -35,15 +34,11 @@ namespace PDFOfferCreator.Web.PDFCreats
         public string ModuleTypePrice { set { _moduleTypePrice.DataForReplace = value; } }
 
         public string BatteryStoragePrice { set { _batteryStoragePrice.DataForReplace = value; } }
-        private string ResultHTML = "";
+
 
         public event Action FileDownloaded;
 
-        public PDFFiller(IJSRuntime jS)
-        {
-            JS = jS;
-        }
-        public async Task<bool> FillData(OfferData offer)
+        public async Task<string> GetFilledData(OfferData offer, string htmlCode)
         {
             Name = offer.Name;
             Surname = offer.Surname;
@@ -53,15 +48,14 @@ namespace PDFOfferCreator.Web.PDFCreats
             BatteryStorageName = GetBatteryStorageName(offer.BatteryStorage);
             ModuleTypePrice = GetModulePrice(offer.ModuleType);
             BatteryStoragePrice = GetBatteryStoragePrice(offer.BatteryStorage);
-            ResultHTML = await HtmlScanner.ReadHtmlFileAsync(templateHtmlPath);
-            ResultHTML =  ReplaceData(ResultHTML);
-            return true;
+            string resultHTML =  ReplaceData(htmlCode);
+            return resultHTML;
         }
         public async Task Download()
         {
-            HTMLToPDFСonverter hTMLToPDFСonverter = new HTMLToPDFСonverter(JS);
-            await hTMLToPDFСonverter.ConvertHtmlToPdf(ResultHTML);
-            FileDownloaded?.Invoke();
+          //  HTMLToPDFСonverter hTMLToPDFСonverter = new HTMLToPDFСonverter(JS);
+           // await hTMLToPDFСonverter.ConvertHtmlToPdf(resultHTML);
+            //FileDownloaded?.Invoke();
         }
 
         private string ReplaceData(string htmlContent)
@@ -125,27 +119,6 @@ namespace PDFOfferCreator.Web.PDFCreats
                 default: return null;
             }
         }
-        /*public async Task TestCreatePdf()
-        {
-            var htmlContent = await ReadHtmlFileAsync(templateHtml);
-            ConvertHtmlToPdf(htmlContent);
-        }*/
-        /* public async Task<string> ReadHtmlFileAsync(string filePath)
-         {
-             try
-             {
-                 using (StreamReader reader = new StreamReader(filePath))
-                 {
-                     string fileContent = await reader.ReadToEndAsync();
-                     return fileContent;
-                 }
-             }
-             catch (Exception ex)
-             {
-                 return "";
-             }
-         }*/
-
 
     }
 }

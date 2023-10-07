@@ -8,5 +8,6 @@ namespace PDFOfferCreator.Web.Services
         Task<OfferData> GetOfferData(int id);
         Task<OfferData> UpdateOfferData(OfferData e);
         Task<OfferData> CreateOfferData(OfferData e);
+        Task DeleteOfferData(int id);
     }
 }

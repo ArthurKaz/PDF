@@ -189,3 +189,13 @@ a, .btn-link {
     min-height: 80px;
 }
 
+.pdf-container {
+    border: 2px solid #000;
+    padding: 10px;
+    width: 210mm;
+    height: 297mm;
+    max-width: 100%; 
+}
+
+
+
