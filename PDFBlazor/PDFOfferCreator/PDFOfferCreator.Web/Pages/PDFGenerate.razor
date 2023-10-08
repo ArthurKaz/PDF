@@ -7,9 +7,12 @@
 else{
 <br/>
     <br />
-<div class="pdf-container">@html</div>
+<div class="pdf-container">
+    <div class="pdf-content">@html</div>
+    </div>
     <br />
 
     
     <a class="btn btn-success m-1" @onclick ="DownloadPDF">Download</a>
+    <a href="@($"/edit/{@Id}")" class="btn btn-primary m-1">Edit</a>
 }

@@ -9,13 +9,13 @@ namespace PDFOfferCreator.Web.PDFCreats
         {
             JS = jS;
         }
-        public async Task ConvertHtmlToPdf(string htmlData)
+        public async Task ConvertHtmlToPdf(string htmlData, string filename)
         {
             var render = new ChromePdfRenderer();
             var doc = render.RenderHtmlAsPdf(htmlData);
-            var fileName = "Result.pdf";
+            var fullFileName = filename + ".pdf";
             using var streamRef = new DotNetStreamReference(stream: doc.Stream);
-            await JS.InvokeVoidAsync("SubmitHTML", fileName, streamRef);
+            await JS.InvokeVoidAsync("SubmitHTML", fullFileName, streamRef);
         }
     }
 }

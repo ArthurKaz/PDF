@@ -35,10 +35,10 @@ namespace PDFOfferCreator.Model
         public OfferData()
         {
             Id = 0;
-            Name = "Name";
-            Surname = "Surname";
-            City = "city";
-            Street = "street";
+            Name = "";
+            Surname = "";
+            City = "";
+            Street = "";
             ModuleType = 0;
             BatteryStorage = 0;
         }

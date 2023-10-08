@@ -33,12 +33,13 @@ namespace PDFOfferCreator.Web.Pages
         public NavigationManager NavigationManager { get; set; }
         public async Task DownloadPDF()
         {
-            /*OfferData = null;
-            HTMLToPDFСonverter converter = new HTMLToPDFСonverter(js);
-            await converter.ConvertHtmlToPdf(_code);*/
             string encodedFileName = System.Net.WebUtility.UrlEncode(_code);
 
-            NavigationManager.NavigateTo($"/loading/{encodedFileName}");
+            NavigationManager.NavigateTo($"/loading/{encodedFileName}/{GetFileName()}");
+        }
+        private string GetFileName()
+        {
+            return OfferData.Name + " " + OfferData.Surname;
         }
     }
 }

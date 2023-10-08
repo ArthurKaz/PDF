@@ -8,18 +8,20 @@ namespace PDFOfferCreator.Web.Pages
     {
         [Parameter]
         public string html {  get; set; }
+        [Parameter]
+        public string fileName { get; set; }
         [Inject]
         public IJSRuntime js { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public string DecodedFileName => System.Net.WebUtility.UrlDecode(html);
+        public string DecodedHTML => System.Net.WebUtility.UrlDecode(html);
 
         protected override async Task OnInitializedAsync()
         {
             await Task.Delay(10);
             HTMLToPDFСonverter converter = new HTMLToPDFСonverter(js);
-            await converter.ConvertHtmlToPdf(DecodedFileName);
+            await converter.ConvertHtmlToPdf(DecodedHTML, fileName);
             NavigationManager.NavigateTo("/");
         }
 

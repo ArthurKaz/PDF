@@ -66,5 +66,10 @@
             </InputSelect>
         </div>
     </div>
+    <br />
     <button type="submit" class="btn btn-primary m-1">Add</button>
+    <button type= "button" class="btn btn-primary m-1" @onclick="LeavePageClick">Back</button>
 </EditForm>
+
+
+<PragimTech.Components.Confirm @ref="LeaveConfirmation" ConfirmationChanged="ConfirmLeavePageClick" ButtonText="Sure" ConfirmationMessage="Are you sure you want to leave the page? All entered data will be erased." ConfirmationTitle="Leave the page?"></PragimTech.Components.Confirm>

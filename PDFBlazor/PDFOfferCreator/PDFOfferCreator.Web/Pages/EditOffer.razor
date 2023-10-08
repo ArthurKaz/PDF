@@ -1,5 +1,83 @@
-﻿<h3>EditOffer</h3>
+﻿@page "/edit/{id}"
+@inherits EditOfferBase
+@if (OfferData == null )
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <EditForm Model="@OfferData" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <h3>Edit offer data</h3>
+        <hr />
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">
+                Name
+            </label>
+            <div class="col-sm-10">
+                <InputText id="name" class="form-control" placeholder="Name"
+                @bind-Value="OfferData.Name" @onclick="()=> Saved = false"></InputText>
+                <ValidationMessage For="@(() => OfferData.Name)" />
+            </div>
 
-@code {
+            <label for="surname" class="col-sm-2 col-form-label">
+                Surname
+            </label>
+            <div class="col-sm-10">
+                <InputText id="surname" class="form-control" placeholder="Surname"
+                @bind-Value="OfferData.Surname" @onclick="()=> Saved = false"></InputText>
+                <ValidationMessage For="@(() => OfferData.Surname)" />
+            </div>
+
+            <label for="city" class="col-sm-2 col-form-label">
+                City
+            </label>
+            <div class="col-sm-10">
+                <InputText id="city" class="form-control" placeholder="City"
+                @bind-Value="OfferData.City" @onclick="()=> Saved = false"></InputText>
+                <ValidationMessage For="@(() => OfferData.City)" />
+            </div>
+
+            <label for="street" class="col-sm-2 col-form-label">
+                Street
+            </label>
+            <div class="col-sm-10">
+                <InputText id="street" class="form-control" placeholder="Street"
+                @bind-Value="OfferData.Street" @onclick="()=> Saved = false"></InputText>
+                <ValidationMessage For="@(() => OfferData.Street)" />
+            </div>
+
+            <label for="moduleType" class="col-sm-2 col-form-label">
+                Module Type
+            </label>
+            <div class="col-sm-10">
+                <InputSelect id="moduleType" @bind-Value="OfferData.ModuleType" class="form-control" @onclick="()=> Saved = false">
+                    @foreach (var moduleType in Enum.GetValues(typeof(ModuleType)))
+                    {
+                        <option value="@moduleType">@moduleType</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <label for="batteryStorage" class="col-sm-2 col-form-label">
+                Battery Storage
+            </label>
+            <div class="col-sm-10">
+                <InputSelect id="batteryStorage" @bind-Value="OfferData.BatteryStorage" class="form-control" @onclick="()=> Saved = false">
+                    @foreach (var batteryStorage in Enum.GetValues(typeof(BatteryStorage)))
+                    {
+                        <option value="@batteryStorage">@batteryStorage</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary m-1">Save changes</button>
+        <button type="button" class="btn btn-primary m-1" @onclick="LeavePageClick">Back</button>
+       @if(Saved){
+            <a type="button" href="@($"/pdfdenerate/{@OfferData.Id}")" class="btn btn-success m-1">Get PDF</a>
+       }
+    </EditForm>
+    <PragimTech.Components.Confirm @ref="LeaveConfirmation" ConfirmationChanged="ConfirmLeavePageClick" ButtonText="Sure" ConfirmationMessage="Are you sure you want to leave the page? All entered data will be erased." ConfirmationTitle="Leave the page?"></PragimTech.Components.Confirm>
 
 }
